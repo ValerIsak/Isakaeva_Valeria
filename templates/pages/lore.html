@@ -1,0 +1,54 @@
+{% extends '_base.html' %}
+{% block title %}Лор игры{% endblock title %}
+{% block content %}
+<body class="page-lore">
+    <main class="lore-page">
+        <h1>Лор игры</h1>
+        <p>
+            Средневековье. <br>
+            <br>
+            На материке царит хаос! В математика Огюстена Луи Коши вселился демон и навел на материк проклятие! Оно охватило жителей, погрузив их в бред и заставив думать лишь о рядах, но среди них все еще встречаются те, кто может поделиться мудростью и дельными советами. <br>
+            <br>
+            Демон собрал под свои знамёна армию чертей, монстров и других зловещих тварей, которые сражались, используя магические карты с рядами. Монстры были отправлены по регионам, каждому региону был назначен предводитель, ответственный за контроль над монстрами и конкретные признаки решения рядов. <br>
+            <br>
+            Главному герою, избранному судьбой, предстоит взять на себя трудную миссию — освободить родную землю и изгнать демона из Коши. Он отправится в путешествие по материку, где ему предстоят бои с монстрами и их предводителями, а в конце концов ему нужно будет добраться до Демона и изгнать его из Коши, чтобы спасти материк.
+        </p>
+        <button>      
+            {% if user.is_authenticated %}
+                <a href="{% url 'rules' %}">Продолжить</a>
+            {% else %}
+                <a href="{% url 'accounts:signup' %}">Продолжить</a>
+            {% endif %}
+        </button>
+    </main>
+
+    <script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>
+</body>
+{% endblock content %}

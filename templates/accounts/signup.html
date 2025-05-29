@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<body class="page-reg">
+    <main class="reg-page">
+      <form method="post">
+        {% csrf_token %}
+        <h1>Регистрация</h1>
+        <p>Кто ты, наш герой?</p>
+
+        <div class="username">
+          {{ form.username }}
+          {% if form.username.errors %}
+            <div class="form-error">{{ form.username.errors.0 }}</div>
+          {% endif %}
+        </div>
+
+        <div class="password">
+          {{ form.password1 }}
+          {% if form.password1.errors %}
+            <div class="form-error">{{ form.password1.errors.0 }}</div>
+          {% endif %}
+        </div>
+
+        <div class="password">
+          {{ form.password2 }}
+          {% if form.password2.errors %}
+            <div class="form-error">{{ form.password2.errors.0 }}</div>
+          {% endif %}
+        </div>
+
+
+        <button type="submit">Продолжить</button>
+
+        <p class="switch-auth-text">
+          Уже есть аккаунт?
+          <a href="{% url 'accounts:login' %}" class="switch-auth-link">Войти</a>
+        </p>
+
+      </form>
+    </main>
+</body>

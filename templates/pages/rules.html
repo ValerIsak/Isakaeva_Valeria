@@ -1,0 +1,42 @@
+{% extends '_base.html' %}
+{% block title %}Правила игры{% endblock %}
+{% block content %}
+<body class="page-rules">
+    <main class="rules-page">
+        <h1>Правила</h1>
+        <p>
+            Игрок начинает с 5 жизнями, выбирает уровень сложности (легкий, средний или сложный, доступный только при 40+ очках ранга) и локацию, где сражается с монстрами, решая задачи. За правильные ответы начисляются очки ранга, за ошибки теряются жизни. Подсказки можно купить за 2 очка ранга. Если жизни заканчиваются, их можно восстановить, ответив на теоретический вопрос. Для победы над боссом нужно решить 3 задачи в случайных локациях. Цель игры — набрать очки ранга, победить босса и освободить землю от монстров.
+        </p>
+        <button><a href="{% url 'game:choose_monster' %}">Начать игру</a></button>
+    </main>
+
+    <script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>
+</body>
+{% endblock %}

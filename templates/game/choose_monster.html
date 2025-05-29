@@ -1,0 +1,91 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}Выбор моснтра{% endblock title %}
+{% block content %}
+<body class="page-choose-boss">
+    <main class="choose-boss-page">
+        <div class="choose-boss-title">
+            <button class="logout-button">
+                <a href="{% url 'accounts:logout' %}">Выйти</a>
+            </button>
+            <h1>Уровень сложности</h1>
+            <h2>Выбери монстра</h2>
+        </div>
+
+        <section class="boss-selection">
+            <form method="post">
+                {% csrf_token %}
+                <div class="monsters">
+                    <button type="submit" class="monster" name="monster" value="kitsune">
+                        <img src="{% static 'img/kitsune.jpeg' %}" alt="Кицуне">
+                        <div class="monster-label">Кицуне • лёгкий</div>
+                    </button>
+
+                    <button type="submit" class="monster" name="monster" value="godzilla">
+                        <img src="{% static 'img/godzilla.jpeg' %}" alt="Годзилла">
+                        <div class="monster-label">Годзилла • БОСС</div>
+                    </button>
+
+                    <button type="submit" class="monster" name="monster" value="cerberus">
+                        <img src="{% static 'img/cerberus.jpeg' %}" alt="Цербер">
+                        <div class="monster-label">Цербер • средний</div>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+         <div class="footer">
+            <div class="health">
+                <img src="{% static 'img/heart.png' %}" alt="Жизни">
+                <span>{{ user.lives }}</span>
+            </div>
+         
+            <div class="points">
+				  <img src="{% static 'img/rank.png' %}" alt="Ранг">
+				  <span>{{ user.rank_points }}</span>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+<style>
+    
+</style>
+
+<script>
+    function selectMonster(el) {
+        document.querySelectorAll('.monster').forEach(m => m.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+</script>
+<script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>
+{% endblock content %}

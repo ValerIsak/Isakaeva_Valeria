@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Бой</title>
+  <link rel="stylesheet" href="{% static 'css/play.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Russo+One&display=swap" rel="stylesheet">
+
+  <style>
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+  
+    .fade-in.ready {
+      opacity: 1;
+    }
+  </style>
+  
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+
+  
+
+</head>
+
+<body id="game-body" data-bg="{{ location_background }}" data-monster="{{ current_monster }}" data-is-boss="{{ is_boss_fight|yesno:'true,false' }}">
+
+    <div id="game-fade" class="game-fade"></div>
+
+
+  <div id="game" v-cloak>
+
+    <div class="top-info" v-if="!showAnswer">
+      <p class="info-text" v-if="!isBossFight">
+        Реши задание и получи <span v-text="task.rank_points"></span> очка(ов) ранга.<br/>
+        Ты можешь воспользоваться подсказкой. Её стоимость — <span v-text="hintCost"></span> очка(ов) ранга.<br/>
+        Чтобы узнать правильный ответ — нажми на карту и переверни её.
+      </p>
+    
+      <p class="info-text boss" v-else>
+        №<span v-text="bossProgress + 1"></span><br/>
+        Чтобы узнать правильный ответ — переверни карту.
+      </p>
+    </div>
+    
+    
+    <div class="top-info" v-else :class="{ boss: isBossFight }">
+      <p class="info-text">Ты решил задачу...</p>
+      <div class="answer-buttons">
+        <button
+        @click="submit(true)"
+        :class="['answer-button', 'correct', { boss: isBossFight }]"
+      >
+        Верно
+      </button>
+      
+      <button
+        @click="submit(false)"
+        :class="['answer-button', 'wrong', { boss: isBossFight }]"
+      >
+        Неверно
+      </button>
+      </div>
+    </div>
+    
+      
+    <div :class="['play-bottom-fixed', { boss: isBossFight }]">
+      <div class="battle-container">
+        
+        <img class="avatar player" src="{% static 'img/player-avatar.png' %}" alt="Игрок">
+    
+        <div class="card-container" @click="flipCard" :class="[{ flipped: showAnswer, boss: isBossFight }]">
+
+          <div class="card front">
+            <img
+              :src="isBossFight ? '/static/img/boss-card-back.png' : '/static/img/card-back.png'"
+              alt="Карточка"
+              class="card-image"
+            />
+            <div class="card-text-wrapper">
+              <p class="card-additional" v-if="task.additional_info" v-text="task.additional_info"></p>
+              <p :class="['card-text', { boss: isBossFight }]" id="math-text" v-html="renderedMath(task.text)"></p>
+            </div>
+          </div>
+
+          <div class="card back">
+            <img
+              :src="isBossFight ? '/static/img/boss-card-front.png' : '/static/img/card-front.png'"
+              alt="Ответ"
+              class="card-image"
+            />
+            <div class="card-text-wrapper">
+              <p :class="['card-text', { boss: isBossFight }]" id="math-text" v-text="task.correct_answer"></p>
+            </div>
+          </div>
+
+        </div>
+    
+        <img
+          :class="['avatar', 'enemy', { boss: isBossFight }]"
+          :src="monsterImage"
+          alt="Монстр"
+        />
+    
+      </div>
+    </div>
+    
+
+    <div class="footer">
+      
+      <div class="health-indicator" v-if="!isBossFight">
+        <img src="{% static 'img/heart.png' %}" class="health-icon">
+        <span class="health-count" v-text="lives"></span>
+      </div>
+
+      <div v-if="!showAnswer && !isBossFight" class="hint-positioned">
+        <button @click="openHintPopup" class="hint-button">Подсказка</button>
+      </div>
+      
+      <div class="rank-indicator" v-if="!isBossFight">
+        <img src="{% static 'img/rank.png' %}" class="rank-icon">
+        <span class="rank-count" v-text="rank"></span>
+      </div>
+    </div>
+    
+    
+    
+    
+
+
+    <div v-if="noTasksLeft" class="modal-overlay">
+        <div class="modal-box">
+          <h2>Все задачи в этой локации пройдены</h2>
+          <p>Выбирай другую локацию и снова в бой!</p>
+          <button class="modal-button" @click="goToMenu">К локациям</button>
+        </div>
+      </div>
+      
+
+
+
+      <div v-if="showHintPopup" class="hint-popup-overlay">
+        <div class="hint-popup-box">
+          <h2 class="hint-popup-title">Подсказка</h2>
+      
+          <template v-if="!hintUsed">
+            <p class="hint-popup-cost">
+              Стоимость подсказки — <span v-text="hintCost"></span> очка(ов) ранга
+            </p>            
+            <button
+                class="hint-popup-button"
+                @click="confirmBuyHint"
+                :disabled="rank < hintCost">
+                Показать подсказку
+                </button>
+          </template>
+      
+          <template v-else>
+            <p class="hint-popup-cost" v-text="task.hint"></p>
+            <button class="hint-popup-button" @click="closeHintPopup">Вернуться к задаче</button>
+          </template>
+        </div>
+
+        <div class="hint-popup-indicators">
+          <div class="hint-popup-indicator">
+            <img src="{% static 'img/heart.png' %}" class="hint-popup-icon">
+            <span class="hint-popup-value" v-text="lives"></span>
+          </div>
+          <div class="hint-popup-indicator">
+            <img src="{% static 'img/rank.png' %}" class="hint-popup-icon">
+            <span class="hint-popup-value" v-text="rank"></span>
+          </div>
+        </div>
+        
+        
+        <button class="hint-popup-back" v-if="!hintUsed" @click="closeHintPopup">назад</button>
+
+      </div>
+      
+      <a
+        v-if="!showHintPopup && !isBossFight"
+        href="{% url 'game:choose_location' %}"
+        class="back-button-top"
+      >назад</a>
+
+
+
+
+
+
+
+
+      <div v-if="showTheoryQuiz" class="theory-screen">
+        <h1 class="quiz-title">Дополнительная жизнь</h1>
+        <p class="quiz-question" v-text="theoryQuestion?.question"></p>
+      
+        <div class="quiz-answers">
+          <button
+            v-for="(a, i) in theoryQuestion?.answers"
+            :key="i"
+            class="quiz-option"
+            @click="submitTheoryAnswer(i)"
+          >{{ a }}</button>
+        </div>
+      
+        <p class="quiz-feedback" v-if="feedback" v-text="feedback"></p>
+        <button v-if="feedback === 'Верно! Возвращайся в бой.'" @click="restartGame" class="continue-button">
+          Вернуться в бой
+        </button>
+      </div>      
+
+  </div>
+
+
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="{% static 'js/game.js' %}"></script>
+
+  
+
+
+</body>
+</html>

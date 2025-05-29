@@ -1,0 +1,39 @@
+{% extends '_base.html' %}
+{% block title %}Карты, деньги, два ряда{% endblock title %}
+{% block content %}
+<body class="page-main">
+    <main class="main-page">
+        <h1>Карты, деньги, два ряда</h1>
+        <button><a href="{% url 'lore' %}">Начать</a></button>
+    </main>
+</body>
+<script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>
+</html>
+{% endblock content %}

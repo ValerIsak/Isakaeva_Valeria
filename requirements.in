@@ -1,0 +1,6 @@
+django 
+django-allauth
+psycopg2
+pillow
+webcolors
+django-nested-admin

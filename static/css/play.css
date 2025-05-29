@@ -1,0 +1,694 @@
+[v-cloak] { display: none; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Russo One', sans-serif;
+  color: #fff;
+  position: relative;
+  max-height: 100vh;
+}
+
+#game {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.top-info {
+  font: 400 clamp(64px, 14vw, 128px) 'Rubik Wet Paint';
+  text-align: center;
+  font-size: 18px;
+  max-width: 60%;
+  margin: 0 auto;
+  color: white;
+}
+
+.top-info.boss {
+  font: 400 clamp(64px, 14vw, 128px) 'Rubik Wet Paint';
+  text-align: center;
+  font-size: 18px;
+  max-width: 60%;
+  margin: 0 auto;
+  color:rgb(0, 0, 0);
+}
+
+.info-text {
+  font-size: 28px;
+  /* color: white; */
+  text-align: center;
+  font-family: 'Rubik Wet Paint', sans-serif;
+  text-shadow:
+    1px 1px 0 #a51f1d,
+    -1px 1px 0 #a51f1d,
+    1px -1px 0 #a51f1d,
+    -1px -1px 0 #a51f1d;
+}
+
+.info-text.boss {
+  font-size: 36px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-family: 'Rubik Wet Paint', sans-serif;
+  text-shadow:
+    1px 1px 0 #a51f1d,
+    -1px 1px 0 #a51f1d,
+    1px -1px 0 #a51f1d,
+    -1px -1px 0 #a51f1d;
+}
+
+
+.play-bottom-fixed {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  margin-bottom: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+  
+
+
+.battle-container {
+  position: relative;
+  width: 100%;
+  margin: 0px 0;
+  min-height: 250px;
+}
+  
+
+.avatar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s;
+}
+
+.avatar.player {
+  position: absolute;
+  left: 120px;
+  top: 65%;
+  transform: translateY(-50%);
+}
+
+.avatar.enemy {
+  position: absolute;
+  right: 120px;
+  top: 65%;
+  transform: translateY(-50%);
+}
+
+.avatar.enemy.boss {
+  position: absolute;
+  right: 120px;
+  top: 15%;
+  transform: translateY(-50%);
+}
+
+.card-container {
+  margin: 0 auto;
+}
+
+
+
+.card-container {
+    width: 280px;
+    height: 410px;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.card-container.boss {
+  width: 310px;
+  height: 420px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+}
+  
+.card {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 16px;
+    backface-visibility: hidden;
+    transition: transform 0.4s ease;
+    transform-style: preserve-3d;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+.card-text-wrapper {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1px 2px;
+  border-radius: 100px;
+  margin: 0 20px;
+  max-width: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+
+.card-text {
+    z-index: 2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 6px black;
+    padding: 10px;
+    padding-top: 5px;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.card-text mjx-container {
+  text-shadow: 10px 10px 10px rgb(0, 0, 0);
+}
+
+.card-additional {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+  padding: 0 10px;
+}
+
+
+.card-text.boss {
+  z-index: 2;
+  color: rgb(199, 12, 12);
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0 0 6px black;
+  padding: 20px;
+  text-align: center;
+  line-height: 1.4;
+}
+  
+.card.back {
+    transform: rotateY(180deg);
+}
+  
+.card-container.flipped .front {
+    transform: rotateY(180deg);
+}
+  
+.card-container.flipped .back {
+    transform: rotateY(360deg);
+}
+  
+.hint-section, .choice-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.hint-button, .answer-button {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #6e704a;
+  color: white;
+  cursor: pointer;
+}
+
+
+/* ответ */
+
+.answer-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+.answer-button {
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint';
+  color: #ffffff;
+  background: rgba(165, 31, 29, 0.705);
+  border: none;
+  border-radius: 50px;
+  padding: 14px 30px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.answer-button:hover {
+  transform: scale(1.05);
+  background: rgba(165, 31, 29, 0.850);
+}
+
+
+.answer-button.boss {
+  background-color: rgba(55, 43, 43, 0.82);
+  color: #fff;
+  box-shadow: 0 0 10px #000000;
+}
+
+.answer-button.boss:hover {
+  background: rgba(43, 28, 28, 0.82);
+}
+
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  /* padding: 0 30px; */
+  pointer-events: none;
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+  pointer-events: all;
+}
+
+
+.nav-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-right {
+  flex: 1;
+}
+
+.back-button {
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint';
+  color: #ffffff;
+  background: rgba(165, 31, 29, 0.705);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1;
+  text-decoration: none;
+  margin-left: 35px;
+}
+
+.back-button:hover {
+  background: rgba(165, 31, 29, 0.850);
+  transform: scale(1.05);
+}
+
+
+
+.indicators {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-family: 'Rubik Wet Paint', sans-serif;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(165, 31, 29, 0.705);
+  color: white;
+  /* font-weight: bold; */
+  font-size: 24px;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.indicator img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+
+
+
+.health-indicator {
+  position: absolute;
+  bottom: 10px;
+  left: 50px;
+  display: flex;
+  align-items: center;
+  background: rgba(165, 31, 29, 0.705);
+  border-radius: 50px;
+  padding: 5px 20px;
+  z-index: 2;
+}
+
+.rank-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  background: rgba(165, 31, 29, 0.705);
+  border-radius: 50px;
+  padding: 5px 20px;
+  z-index: 2;
+}
+
+.health-icon,
+.rank-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.health-count,
+.rank-count {
+  font: 400 36px 'Rubik Wet Paint';
+  color: white;
+  margin-left: 10px;
+}
+
+
+.footer {
+  /* height: 100px; */
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+
+/* модалка */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+  
+.modal-box {
+    background: #f6e3c6;
+    padding: 30px 40px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+    max-width: 400px;
+    width: 90%;
+    animation: scaleIn 0.3s ease-in-out;
+}
+  
+.modal-box h2 {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #000;
+}
+  
+.modal-box p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 24px;
+}
+  
+.modal-button {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    padding: 12px 24px;
+    font-size: 15px;
+    background: rgba(165, 31, 29, 0.705);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+  
+.modal-button:hover {
+    background: rgba(165, 31, 29, 0.85);
+}
+  
+  /* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+  
+@keyframes scaleIn {
+    from {
+      transform: scale(0.85);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+}
+  
+
+
+
+/* затухание */
+.game-fade {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+    pointer-events: none;
+  }
+  .game-fade.done {
+    opacity: 0;
+  }
+  
+
+
+
+/* кнопка назад */
+
+
+.back-button-play {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint', sans-serif;
+  color: #ffffff;
+  background: rgba(165, 31, 29, 0.47);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1001;
+  text-decoration: none;
+}
+
+.back-button-play:hover {
+  background: rgba(165, 31, 29, 0.7);
+  transform: scale(1.05);
+}
+  
+
+
+.back-button-top {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint', sans-serif;
+  color: #ffffff;
+  background: rgba(165, 31, 29, 0.47);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1001;
+  text-decoration: none;
+}
+  
+.back-button-top:hover {
+  background: rgba(165, 31, 29, 0.7);
+  transform: scale(1.05);
+}
+
+
+.hint-popup-back {
+  position: absolute;
+  bottom: 20px;
+  left: 60px;
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint';
+  color: #ffffff;
+  background: rgba(165, 31, 29, 0.705);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1001;
+  text-decoration: none;
+}
+
+.hint-popup-back:hover {
+  background: rgba(165, 31, 29, 0.850);
+  transform: scale(1.05);
+}
+
+
+
+
+  
+
+/* подсказка */
+.hint-button {
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint';
+  color: #ffffff;
+  background: rgba(165, 31, 29, 0.705);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+.hint-button:hover {
+  background: rgba(165, 31, 29, 0.856);
+  transform: scale(1.05);
+}
+
+
+.hint-positioned {
+  /* margin-top: 500px; */
+  text-align: center;
+  position: absolute;
+  bottom: 0px !important;
+  left: 50%; /* Смещаем влево на 50% ширины родителя */
+  transform: translateX(-50%); 
+}
+
+
+
+.hint-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: url("imgs/bg.png") center/cover no-repeat;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+  
+.hint-popup-box {
+  padding: 40px;
+  border-radius: 30px;
+  text-align: center;
+  max-width: 900px;
+  width: 90%;
+}
+
+.hint-popup-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.hint-popup-title {
+  font: 400 clamp(40px, 8vw, 80px) 'Rubik Wet Paint';
+  color: #000;
+  margin-bottom: 200px;
+}
+  
+.hint-popup-cost {
+  font: 400 clamp(20px, 2vw, 36px) 'Russo One', sans-serif;
+  color: #000;
+  margin-bottom: 50px;
+}
+  
+.hint-popup-button {
+  font: 400 clamp(20px, 2vw, 32px) 'Rubik Wet Paint';
+  background: rgba(165, 31, 29, 0.8);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+  margin-bottom: 20px;
+}
+  
+.hint-popup-button:hover {
+    transform: scale(1.05);
+}
+  
+
+
+.hint-popup-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  z-index: 1001;
+}
+
+.hint-popup-indicator {
+  display: flex;
+  align-items: center;
+  background: rgba(165, 31, 29, 0.82);
+  border-radius: 50px;
+  padding: 5px 20px;
+}
+
+.hint-popup-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.hint-popup-value {
+  font: 400 36px 'Rubik Wet Paint';
+  color: white;
+  margin-left: 10px;
+}
+
+
+
+

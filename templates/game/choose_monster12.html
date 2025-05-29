@@ -1,0 +1,73 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}Выбор моснтра{% endblock title %}
+{% block content %}
+<body class="page-choose-boss">
+    <main class="choose-boss-page">
+        <section class="boss-selection">
+            <h1>Уровень сложности</h1>
+            <h2>Выбери монстра</h2>
+
+            <div class="monsters">
+                <div class="monster" onclick="selectMonster(this)">
+                    <img src="{% static 'img/kitsune.jpeg' %}" alt="Кицуне">
+                    <div class="monster-label">Кицуне • лёгкий</div>
+                </div>
+
+                <div class="monster selected" onclick="selectMonster(this)">
+                    <img src="{% static 'img/godzilla.jpeg' %}" alt="Годзилла">
+                    <div class="monster-label boss">Годзилла • БОСС</div>
+                </div>
+
+                <div class="monster" onclick="selectMonster(this)">
+                    <img src="{% static 'img/cerberus.jpeg' %}" alt="Цербер">
+                    <div class="monster-label">Цербер • средний</div>
+                </div>
+            </div>
+
+
+            <form method="post" class="monsters">
+            {% csrf_token %}
+
+            <button type="submit" name="monster" value="kitsune" class="monster left-monster">
+                <img src="{% static 'img/kitsune.jpeg' %}" alt="Кицуне" />
+                <span>Кицуне – лёгкий</span>
+            </button>
+
+            <button type="submit" name="monster" value="godzilla" class="monster boss">
+                <img src="{% static 'img/godzilla.jpeg' %}" alt="Годзилла" />
+                <span>Годзилла – БОСС</span>
+            </button>
+
+            <button type="submit" name="monster" value="cerberus" class="monster right-monster">
+                <img src="{% static 'img/cerberus.jpeg' %}" alt="Цербер" />
+                <span>Цербер – средний</span>
+            </button>
+            </form>
+        </section>
+
+         <div class="footer">
+            <div class="health">
+                <img src="{% static 'img/heart.png' %}" alt="Жизни">
+                <span>{{ user.lives }}</span>
+            </div>
+         
+            <div class="points">
+                <img src="{% static 'img/heart.png' %}" alt="Жизни">
+                <span>{{ user.lives }}</span>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+<script>
+    function selectMonster(el) {
+        document.querySelectorAll('.monster').forEach(m => m.classList.remove('selected'));
+        el.classList.add('selected');
+    }
+</script>
+
+
+</html>
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Босс</title>
+  <link rel="stylesheet" href="{% static 'css/boss.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="boss-wrapper">
+  <div class="boss-title">
+    <h1 class="boss-title">Ты попал в АД!</h1>
+  </div>
+
+  <div class="boss-text">
+    <p class="boss-text" style="max-width: 800px; font-size: 24px;">
+      Чтобы победить босса, тебе нужно решить три задачи без ошибок! 
+      Если ты ошибешься хотя бы один раз, счетчик очков ранга обнулится. 
+      В аду нет возможности воспользоваться подсказкой.
+      <br/>Ты готов?
+    </p>
+  </div>
+  </div>
+
+
+    <form method="post" class="boss-form">
+      {% csrf_token %}
+      <button type="submit" class="boss-start-button">ГОТОВ</button>
+    </form>
+    <a href="{% url 'game:choose_monster' %}" class="back-button">назад</a>
+
+</div>
+
+
+
+</body>
+<script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>
+</html>

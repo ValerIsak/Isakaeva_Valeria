@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Выбор ыввы</title>
+  <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<script>
+  // Выставляем переменную, равную реальной высоте окна
+  const setVH = () => {
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+  };
+  window.addEventListener('resize', setVH);
+  window.addEventListener('load', setVH);
+</script>
+
+
+<div class="page-wrapper">
+  <div class="monster-selection-wrapper">
+    <div class="title">
+      <h1 class="difficulty">Уровень сложности</h1>
+      <p class="text">Выбери монстра</p>
+    </div>
+
+    <form method="post" class="monsters">
+      {% csrf_token %}
+
+      <button type="submit" name="monster" value="kitsune" class="monster left-monster">
+        <img src="{% static 'img/kitsune.jpeg' %}" alt="Кицуне" />
+        <span>Кицуне – лёгкий</span>
+      </button>
+
+      <button type="submit" name="monster" value="godzilla" class="monster boss">
+        <img src="{% static 'img/godzilla.jpeg' %}" alt="Годзилла" />
+        <span>Годзилла – БОСС</span>
+      </button>
+
+      <button type="submit" name="monster" value="cerberus" class="monster right-monster">
+        <img src="{% static 'img/cerberus.jpeg' %}" alt="Цербер" />
+        <span>Цербер – средний</span>
+      </button>
+    </form>
+
+
+  </div>
+
+  <div class="navigation-buttons">
+    <div class="nav-left logout">
+      <a href="{% url 'accounts:logout' %}" class="logout-button">Выйти</a>
+    </div>
+
+
+    <div class="stats-monster">
+      <div class="indicator">
+        <img src="{% static 'img/heart.png' %}" alt="Жизни">
+        <span>{{ request.user.lives }}</span>
+      </div>
+      <div class="indicator">
+        <img src="{% static 'img/rank.png' %}" alt="Ранг">
+        <span>{{ request.user.rank_points }}</span>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+

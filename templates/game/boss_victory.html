@@ -1,0 +1,63 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Босс</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="boss-wrapper">
+    <div class="boss-text-dec">
+        <h1>Поздравляю с<br/>победой над боссом!</h1>
+    </div>
+
+    <div class="win-player">
+        <img class="avatar player defeat" src="{% static 'imgs/player-avatar.png' %}" alt="Игрок">
+        <img class="avatar enemy victory" src="{% static 'imgs/godzilla.jpeg' %}" alt="Босс">
+    </div>
+
+    <div class="boss-form">
+      <a href="{% url 'game:choose_monster' %}" class="boss-start-button">В меню</a>
+    </div>
+
+
+</div>
+
+
+</body>
+
+<script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>
+</html>
+

@@ -1,0 +1,155 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: url("imgs/bg-boss.jpg") center/cover no-repeat;
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    overflow: hidden;
+}
+  
+.boss-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    padding: 0px 0px;
+    text-align: center;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    gap: 50px;
+}
+  
+.boss-title {
+    font-size: 96px;
+    color: #000000;
+    margin-bottom: 30px;
+}
+  
+.boss-text {
+    font-size: 30px !important;
+    line-height: 1.6;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto 30px;
+    color: rgb(0, 0, 0);
+
+}
+
+
+
+  
+.boss-start-button {
+    position: absolute;
+    left: 60px;
+    bottom: 40px;
+    padding: 10px 25px;
+    background: rgba(177, 13, 9, 1);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 30px;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    text-decoration: none;
+    font-size: 28px;
+    box-shadow: 0 0 15px #000000;
+    transition: background 0.3s ease, transform 0.2s ease;
+    z-index: 999;
+    left: 50%;
+    transform: translateX(-50%);
+}
+  
+.boss-start-button:hover {
+    background: #c20303;
+}
+  
+
+  
+.back-button {
+    position: absolute;
+    left: 60px;
+    bottom: 40px;
+    padding: 10px 25px;
+    background: rgba(177, 13, 9, 1);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 30px;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    text-decoration: none;
+    font-size: 28px;
+    box-shadow: 0 0 15px #000000;
+    transition: background 0.3s ease, transform 0.2s ease;
+    z-index: 999;
+}
+  
+.back-button:hover {
+    background: #c20303;
+    transform: scale(1.05);
+}
+  
+
+.boss-form {
+    z-index: 999;
+}
+
+
+
+
+
+.boss-text-dec {
+    font-size: 24px !important;
+    line-height: 1.6;
+    max-width: 1400px;
+    width: 100%;
+    margin: 270px auto 30px;
+    color: rgb(0, 0, 0);
+    z-index: 999;
+}
+
+
+.boss-title-dec {
+    font-size: 48px;
+    color: #000000;
+    margin-bottom: 30px;
+
+}
+
+
+.avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s;
+    z-index: 1;
+}
+
+.avatar.player.victory {
+  position: absolute;
+  left: 120px;
+  top: 25%;
+  transform: translateY(-50%);
+}
+
+.avatar.enemy.victory {
+  position: absolute;
+  right: 120px;
+  top: 75%;
+  transform: translateY(-50%);
+}
+
+
+
+.avatar.player.defeat {
+    position: absolute;
+    left: 120px;
+    top: 75%;
+    transform: translateY(-50%);
+  }
+  
+  .avatar.enemy.defeat {
+    position: absolute;
+    right: 110px;
+    top: 25%;
+    transform: translateY(-50%);
+  }

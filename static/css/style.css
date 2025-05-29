@@ -1,0 +1,1124 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow-y: hidden;
+  }
+
+
+
+
+
+
+/* INDEX.HTML */
+.page-main {
+    height: 100vh;
+    background: url('imgs/welcome-bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.page-main .main-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;
+}
+
+.page-main .main-page h1 {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 72px;
+}
+
+.page-main .main-page button {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 24px;
+    background-color: rgba(110, 112, 74, 1);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.page-main .main-page button a{
+    text-decoration: none;
+    color: white;
+}
+
+.page-main .main-page button:active {
+    background-color: rgb(69, 70, 47);
+}
+
+
+
+
+
+
+
+/* LORE.HTML */
+.page-lore {
+    height: 100vh;
+    background: url('imgs/bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.page-lore .lore-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;
+    padding: 20px 100px;
+}
+
+.page-lore .lore-page h1 {
+    font-size: 72px;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    margin: 0;
+}
+
+.page-lore .lore-page p{
+    font-family: 'Russo One' , sans-serif;
+    text-align: center;  
+    font-size: 26px;
+}
+
+.page-lore .lore-page button {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 24px;
+    background-color: rgba(110, 112, 74, 1);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+}
+
+.page-lore .lore-page button a{
+    text-decoration: none;
+    color: white;
+}
+
+.page-lore .lore-page button:active {
+    background-color: rgb(69, 70, 47);
+}
+
+
+
+
+
+
+
+
+
+/* REG.HTML */
+.page-reg {
+    height: 100vh;
+    background: url('imgs/bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.page-reg .reg-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;
+    padding: 20px 100px;
+}
+
+.page-reg .reg-page h1 {
+    font-size: 72px;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    margin: 0;
+    text-align: center;
+}
+
+.page-reg .reg-page p{
+    font-family: 'Russo One' , sans-serif;
+    text-align: center;  
+    font-size: 26px;
+}
+
+.page-reg .reg-page input[type="text"] {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px 20px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(217, 208, 179, 0.8);
+  font-family: 'Russo One', sans-serif;
+  font-size: 28px;
+  text-align: center;
+  color: #3d3d3d;
+}
+
+.page-reg .reg-page input[type="text"]::placeholder {
+  color: #3d3d3d;
+  opacity: 1;
+}
+
+
+
+.page-reg .reg-page input[type="password"] {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px 20px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 30px;
+  background-color: rgba(217, 208, 179, 0.8);
+  font-family: 'Russo One', sans-serif;
+  font-size: 28px;
+  text-align: center;
+  color: #3d3d3d;
+}
+
+.page-reg .reg-page input[type="password"]::placeholder {
+  color: #3d3d3d;
+  opacity: 1;
+}
+
+
+
+.page-reg .reg-page button {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 24px;
+    background-color: rgba(110, 112, 74, 1);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 50px;
+    justify-content: center;
+    width: 100%;
+}
+
+.page-reg .reg-page button:active {
+    background-color: rgb(69, 70, 47);
+}
+
+
+
+
+
+
+
+
+/* RULES.HTML */
+.page-rules {
+    height: 100vh;
+    background: url('imgs/bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.page-rules .rules-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;      
+    height: 100vh;
+    padding: 20px 100px;
+}
+
+.page-rules .rules-page h1 {
+    font-size: 72px;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    margin: 0;
+}
+
+.page-rules .rules-page p{
+    font-family: 'Russo One' , sans-serif;
+    text-align: center;  
+    font-size: 26px;
+}
+
+.page-rules .rules-page button {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 24px;
+    background-color: rgba(110, 112, 74, 1);
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+}
+
+.page-rules .rules-page button a{
+    text-decoration: none;
+    color: white;
+}
+
+.page-rules .rules-page button:active {
+    background-color: rgb(69, 70, 47);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* GAME.HTML */
+.page-game {
+    height: 100%;
+    background: url('imgs/image_4221a727.jpeg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.page-game .game-page {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 20px 100px;
+}
+
+.page-game .game-page .back-button {
+    background-color: #A51F1DD1;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 20px;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 30px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.page-game .game-page .back-button a {
+    text-decoration: none;
+    color: white;
+}
+
+.page-game .game-page .back-button:active {
+    background-color: #5a1110d1;
+
+}
+
+.page-game .game-page .header .question-block {
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.page-game .game-page .header .question-block p {
+    font-size: 38px;
+    color: white;
+    text-align: center;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    margin: 0;
+}
+
+.page-game .game-page .main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+}
+
+.page-game .game-page .main .your-character,
+.page-game .game-page .main .boss-character {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-game .game-page .main .your-character img,
+.page-game .game-page .main .boss-character img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.page-game .game-page .main .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.card-image {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    transition: filter 0.3s ease;
+}
+
+.card-image.animating {
+    filter: brightness(0.3);
+}
+
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-text {
+    padding: 10px 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Russo One', sans-serif;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 0 5px red;
+
+}
+
+.card-text::before {
+
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+
+.answer-input-wrapper {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    align-items: center;
+}
+
+.page-game .game-page .footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0px;
+    margin-bottom: 20px;
+}
+
+.page-game .game-page .footer .health,
+.page-game .game-page .footer .points {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #A51F1DD1;
+    border-radius: 30px;
+    padding: 10px 14px;
+    z-index: 1000;
+}
+
+.page-game .game-page .footer .health img,
+.page-game .game-page .footer .points img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+.page-game .game-page .footer .health span,
+.page-game .game-page .footer .points span{
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 40px;
+    color: white;
+}
+
+.page-game .game-page .footer .hint {
+    background-color: #A51F1DD1;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 40px;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 30px;
+}
+
+.page-game .game-page .footer .hint:active {
+    background-color: #5a1110d1;
+
+}
+
+.answer-options {
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+    align-items: center;
+}
+
+.answer-btn {
+    font-family: 'Russo One', sans-serif;
+    font-size: 18px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #A51F1DD1;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.answer-btn:active {
+    background-color: #5a1110d1;
+}
+
+.answer-input {
+    font-family: 'Russo One', sans-serif;
+    font-size: 18px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    width: 180px;
+}
+
+.answer-btn.selected {
+    background-color: #fff;
+    color: #A51F1DD1;
+    font-weight: bold;
+    border: 2px solid #A51F1DD1;
+}
+
+.save-answer-btn {
+    margin-top: 15px;
+    font-family: 'Russo One', sans-serif;
+    font-size: 18px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.save-answer-btn:active {
+    background-color: #1e7e34;
+}
+
+
+
+
+
+
+
+.hint-popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.hint-popup-content {
+    background: #f2d6ae;
+    background-size: contain;
+    border: 5px solid black;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    font-family: 'Russo One', sans-serif;
+}
+
+.hint-popup-content h2 {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hint-popup-content p {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.hint-popup-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.hint-popup-buttons .btn-back,
+.hint-popup-buttons .btn-show-hint {
+    font-family: 'Russo One', sans-serif;
+    font-size: 20px;
+    background-color: #A51F1DD1;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+.hint-popup-buttons .btn-back:active,
+.hint-popup-buttons .btn-show-hint:active {
+    background-color: #5a1110d1;
+}
+
+
+/* CHOOSE_BOSS.HTML */
+
+.page-choose-boss {
+    background: url('imgs/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Russo One', sans-serif;
+}
+
+.choose-boss-page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.choose-boss-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.choose-boss-page h1 {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 64px;
+    margin-bottom: 10px;
+}
+
+.logout-button {
+  font-family: 'Rubik Wet Paint', sans-serif;
+  font-size: 20px;
+  background: #a51f1d;
+  color: #000;
+  padding: 10px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.2s;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
+}
+.logout-button:active {
+  background: #5a1110;
+}
+
+.logout-button a {
+  text-decoration: none;
+  color: white;
+}
+
+.boss-selection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.choose-boss-page h2 {
+    font-size: 28px;
+}
+
+
+
+.monsters button{
+    background-color: transparent;
+    border: none;
+}
+
+
+
+.monsters {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+
+.monsters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    max-width: 100%;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+}
+
+.monster img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid transparent;
+}
+
+.monster.selected img {
+    border-color: #3498db;
+}
+
+.monster-label {
+    background-color: #a51f1dd1;
+    color: white;
+    margin-top: 12px;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 18px;
+}
+
+.monster-label.boss {
+    background-color: #000;
+    color: #fff;
+}
+
+
+.page-choose-boss .choose-boss-page .footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: auto;
+}
+
+.page-choose-boss .choose-boss-page .footer .health,
+.page-choose-boss .choose-boss-page .footer .points {
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #A51F1DD1;
+    border-radius: 30px;
+    padding: 10px 14px;
+    z-index: 1000;
+}
+
+.page-choose-boss .choose-boss-page .health img,
+.page-choose-boss .choose-boss-page .points img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+.page-choose-boss .choose-boss-page .health span,
+.page-choose-boss .choose-boss-page .points span{
+    font-family: 'Rubik Wet Paint', sans-serif;
+    font-size: 40px;
+    color: white;
+}
+
+
+
+
+
+
+
+/* CHOOSE_LOCATION.HTML */
+
+
+/* Общий фон и контейнер */
+.width-container, 
+.location-selector-container {
+    background: url('imgs/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.location-selector-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /* justify-content: space-between; */
+}
+
+.location-selector-container > form {
+  flex: 1;                       /* растягиваем форму между шапкой и навигацией */
+  display: flex;
+  justify-content: center;       /* центрируем .locations-wrapper по вертикали */
+  align-items: center;           
+}
+
+/* Заголовки */
+.location-header {
+  text-align: center;
+  margin-top: 40px;
+}
+.mystical-heading {
+  font-family: 'Rubik Wet Paint', sans-serif;
+  font-size: 64px;
+  margin: 0;
+}
+.main-heading-text-style {
+  font-family: 'Russo One', sans-serif;
+  font-size: 28px;
+  margin: 10px 0 0;
+}
+
+/* Обёртка для локаций: две строки по 3 и 2 элемента, центрирование */
+.locations-wrapper {
+  display: grid !important;
+  /* 200px — ширина круга, 60px — горизонтальный отступ */
+  grid-template-columns: 300px 60px 300px 60px 300px;
+  /* две строки, отступ 60px между ними */
+  grid-auto-rows: auto;
+  grid-row-gap: 40px;
+  /* центрируем всю сетку внутри контейнера */
+  justify-content: center;
+  align-content: start;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* Кнопка-локация */
+.location-option {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Картинка */
+.location-image {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  border: 5px solid transparent;
+  transition: border-color 0.2s;
+}
+.location-option:hover .location-image {
+  border-color: #3498db;
+}
+
+/* Подпись */
+.location-button {
+  font-family: 'Russo One', sans-serif;
+  font-size: 18px;
+  padding: 8px 16px;
+  background: #b7baac;
+  color: #000;
+  border-radius: 20px;
+  text-transform: lowercase;
+}
+
+.loc1 { grid-column: 1; grid-row: 1; }
+.loc2 { grid-column: 3; grid-row: 1; }
+.loc3 { grid-column: 5; grid-row: 1; }
+.loc4 { grid-column: 2; grid-row: 2; }
+.loc5 { grid-column: 4; grid-row: 2; }
+/* Навигация */
+.navigation-buttons {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* чтобы не мешала область */
+  z-index: 999;
+}
+.nav-left {
+  position: absolute;
+  left: 40px;
+  pointer-events: auto;
+}
+
+.nav-center {
+  pointer-events: auto;
+}
+
+.back-button {
+  font-family: 'Rubik Wet Paint', sans-serif;
+  font-size: 40px;
+  background: #a51f1d;
+  color: #ffffff;
+  padding: 10px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.back-button:active {
+  background: #5a1110;
+}
+.indicators {
+  display: flex;
+  gap: 20px;
+  color: white;
+}
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #a51f1d;
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+.indicator img {
+  width: 40px; height: 40px;
+}
+.indicator span {
+  font-family: 'Rubik Wet Paint', sans-serif;
+  font-size: 40px;
+}
+
+
+
+
+
+
+
+
+/* BOSS_WIN_DEATH.HTML */
+/* html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: url("imgs/bg-boss.jpg") center/cover no-repeat;
+    color: white;
+    font-family: 'Russo One', sans-serif;
+    overflow: hidden;
+} */
+  
+.boss-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 0px;
+    text-align: center;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    gap: 50px;
+}
+  
+.boss-title {
+    font-size: 96px;
+    color: #000000;
+    margin-bottom: 30px;
+}
+  
+.boss-text {
+    font-size: 30px !important;
+    line-height: 1.6;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto 30px;
+    color: rgb(0, 0, 0);
+
+}
+ 
+.boss-start-button {
+    padding: 10px 25px;
+    background: rgba(177, 13, 9, 1);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 30px;
+    font-family: 'Rubik Wet Paint', sans-serif;
+    text-decoration: none;
+    font-size: 28px;
+    box-shadow: 0 0 15px #000000;
+    transition: background 0.3s ease, transform 0.2s ease;
+    z-index: 999;
+}
+  
+.boss-start-button:hover {
+    background: #c20303;
+}
+   
+  
+.boss-form {
+    z-index: 999;
+    margin-bottom: 40px;
+}
+
+.boss-text-dec {
+    font-size: 42px;
+    line-height: 1.6;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    z-index: 999;
+}
+
+.boss-text-dec h1{
+    margin: 0;
+}
+
+.win-player {
+    display: flex;
+    flex-direction: row;
+    gap: 150px;
+}
+
+.avatar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s;
+    z-index: 1;
+}
+
+.avatar.victory {
+  border: 6px solid gold;
+  box-shadow: 0 10px 125px rgb(0, 0, 0);
+}
+
+.avatar.defeat {
+  filter: grayscale(100%) brightness(50%);
+  opacity: 1;
+}
+
+
+
+
+.boss-locked-message {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.boss-locked-message .boss-locked-text {
+  font-family: 'Russo One', sans-serif;
+  font-size: 32px;
+  line-height: 1.6;
+  color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* THEORY.HTML */
+#theory-app {
+    background: #f2d6ae;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.theory-selection-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  /* background: url("imgs/bg.png") center/cover no-repeat; */
+  padding: 40px 20px;
+}
+
+.theory-screen {
+    text-align: center;
+    padding: 60px 20px;
+    height: 100%;
+}
+
+.quiz-title {
+  font: 400 clamp(48px, 7vw, 72px) 'Rubik Wet Paint';
+  margin-bottom: 100px;
+  margin-top: 0;
+}
+
+.quiz-question {
+  font: 400 28px 'Russo One';
+  margin-bottom: 150px;
+}
+
+.quiz-answers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "first empty third"
+    ". second .";
+  gap: 20px 20px;
+  justify-items: center;
+  align-items: center;
+  margin-top: 40px;
+  max-width: 1700px;
+  width: 100%;
+}
+
+.quiz-option:nth-child(1) {
+  grid-area: first;
+}
+
+.quiz-option:nth-child(2) {
+  grid-area: second;
+}
+
+.quiz-option:nth-child(3) {
+  grid-area: third;
+}
+
+.quiz-option {
+  font: 400 24px 'Russo One';
+  background: rgba(165, 31, 29, 0.7);
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.quiz-option:hover {
+  background: rgba(165, 31, 29, 1);
+}
+
+
+.quiz-feedback {
+  margin-top: 30px;
+  font: 700 24px 'Russo One';
+  color: #000;
+}
+
+
+.theory-selection-wrapper .navigation-buttons {
+    width: 100%;
+    margin-bottom: 30px;
+}

@@ -1,0 +1,144 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}Выбор локации{% endblock title %}
+{% block content %}
+
+<style>
+  body.fadeout {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  html, body {
+    background: #000;
+  }
+
+  body.fadeout {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+</style>
+
+<body id="fade-screen">
+  <div class="width-container" id="page6">
+
+    <div class="location-selector-container">
+
+      <div class="location-header">
+        <p class="mystical-heading">Локация</p>
+        <p class="main-heading-text-style">Выбери местность</p>
+      </div>
+      
+      <form method="post">
+        {% csrf_token %}
+
+
+        <div class="locations-wrapper">
+          <button type="submit" class="location-option loc1" name="location" value="Подземелье">
+            <img src="{% static 'img/locations/podzemelye.jpeg' %}" class="location-image" alt="подземелье">
+            <a class="location-button">подземелье</a>
+          </button>
+        
+          <button type="submit" class="location-option loc2" name="location" value="Поле">
+            <img src="{% static 'img/locations/pole.jpeg' %}" class="location-image" alt="поле">
+            <a class="location-button">поле</a>
+          </button>
+        
+          <button type="submit" class="location-option loc3" name="location" value="Лес">
+            <img src="{% static 'img/locations/les.jpeg' %}" class="location-image" alt="лес">
+            <a class="location-button">лес</a>
+          </button>
+        
+          <button type="submit" class="location-option loc4" name="location" value="Церковь">
+            <img src="{% static 'img/locations/cerkov.jpeg' %}" class="location-image" alt="церковь">
+            <a class="location-button">церковь</a>
+          </button>
+        
+          <button type="submit" class="location-option loc5" name="location" value="Деревня">
+            <img src="{% static 'img/locations/derevnya.jpeg' %}" class="location-image" alt="деревня">
+            <a class="location-button">деревня</a>
+          </button>
+        </div>
+    
+
+        
+      </form>
+      
+      <div class="navigation-buttons">
+        <div class="nav-left">
+          <a href="{% url 'game:choose_monster' %}" class="back-button">Назад</a>
+        </div>
+      
+        <div class="nav-center">
+          <div class="indicators">
+            <div class="indicator">
+              <img src="{% static 'img/heart.png' %}" alt="Жизни">
+              <span>{{ user.lives }}</span>
+            </div>
+            <div class="indicator">
+              <img src="{% static 'img/rank.png' %}" alt="Ранг">
+              <span>{{ user.rank_points }}</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="nav-right"></div>
+      </div>      
+      
+    </div>
+  </div>
+</body>
+
+<script>
+  const buttons = document.querySelectorAll('button[type="submit"]');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const value = btn.value;
+
+      // создаём скрытое поле с выбранной локацией
+      const hiddenInput = document.createElement('input');
+      hiddenInput.type = 'hidden';
+      hiddenInput.name = 'location';
+      hiddenInput.value = value;
+      btn.closest('form').appendChild(hiddenInput);
+
+      document.body.classList.add('fadeout');
+
+      setTimeout(() => {
+        btn.closest('form').submit();
+      }, 500);
+    });
+  });
+</script>
+<script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>
+{% endblock content %}
+

@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Доп. жизнь</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<div id="game-fade" class="game-fade"></div>
+
+<style>
+  .game-fade {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+    pointer-events: none;
+  }
+
+  .game-fade.done {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      document.getElementById('game-fade')?.classList.add('done');
+    }, 50);
+  });
+</script>
+
+<div id="theory-app">
+    <div class="theory-selection-wrapper">
+      <div id="theory-app1" class="theory-screen">
+        <h1 class="quiz-title" v-text="'Дополнительная жизнь'"></h1>
+      </div>
+
+      <div>
+        <p class="quiz-question" v-if="!loading" v-text="question"></p>
+
+        <div class="quiz-answers" v-if="!loading">
+            <button
+            class="quiz-option"
+            v-for="(answer, index) in answers"
+            :key="answer"
+            @click="submitAnswer(index)"
+            :disabled="answered"
+            v-text="answer"
+          ></button>
+          
+        </div>
+
+        <div class="quiz-feedback" v-if="answered" v-text="resultText"></div>
+      </div>
+
+      <div class="navigation-buttons">
+        <div class="nav-left">
+          <a href="{% url 'game:choose_monster' %}" class="back-button">Назад</a>
+        </div>
+      
+        <div class="nav-center">
+          <div class="indicators">
+            <div class="indicator">
+              <img src="{% static 'img/heart.png' %}" alt="Жизни">
+              <span>{{ user.lives }}</span>
+            </div>
+            <div class="indicator">
+              <img src="{% static 'img/rank.png' %}" alt="Ранг">
+              <span>{{ user.rank_points }}</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="nav-right"></div>
+      </div>   
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="{% static 'js/theory.js' %}"></script>
+
+
+
+</div>
+<script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>

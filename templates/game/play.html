@@ -1,0 +1,232 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Wet+Paint&family=Russo+One&display=swap" rel="stylesheet">
+
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+        svg: { fontCache: 'global' }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+</head>
+
+
+
+<style>
+  #game-fade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  #game-fade.done {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+</style>
+
+<body class="page-game" id="game-body" data-bg="{{ location_background }}" data-is-boss="{{ is_boss_fight|yesno:'true,false' }}" data-monster="{{ current_monster }}">
+   <div id="game-fade"></div>
+
+     <main class="game-page" id="game">
+
+        <div class="hint-popup" v-if="showHintPopup">
+          <div class="hint-popup-content">
+            <h2>Подсказка</h2>
+            <p v-if="!hintUsed">Стоимость подсказки — {{ hintCost }} очка(ов) ранга</p>
+            <p v-else v-text="hint"></p>
+
+            <div class="hint-popup-buttons">
+              <button class="btn-back" @click="showHintPopup = false">назад</button>
+              <button
+                class="btn-show-hint"
+                v-if="!hintUsed"
+                @click="buyHint"
+                :disabled="rank < hintCost"
+              >Показать подсказку</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <button class="back-button" v-if="!isBossFight">
+          <a href="{% url 'game:choose_location' %}">Назад</a>
+        </button>
+
+
+         <div class="header">
+            <div class="question-block" v-if="currentQuestion">
+              <p>
+                Вопрос
+                <span v-text="currentQuestionIndex + 1"></span>
+                из
+                <span v-text="questions.length"></span>
+              </p>
+              <p class="question-text" v-text="currentQuestion.text"></p>
+            </div>  
+         </div>
+     
+         <div class="main">
+            <div class="your-character">
+                <img src="{% static 'img/player-avatar.png' %}" alt="you">
+            </div>
+        
+            <div class="card" :class="{ flipped: flipped }">
+              <div class="card-image" id="card-container" @click="flipCard">
+
+                
+                <img
+                  v-if="!flipped"
+                  id="card-img"
+                  src="{% static 'img/card-back.png' %}"
+                  alt="card"
+                />
+                <div v-if="!flipped" class="card-text" v-html="renderedMath(task.text)"></div>
+
+                
+                <img
+                  v-if="flipped"
+                  id="card-img"
+                  src="{% static 'img/card-front.png' %}"
+                  alt="card"
+                />
+                <div v-if="flipped" class="card-text">
+                  
+                    <div v-if="currentQuestion?.type === 'choice'" class="answer-options">
+                        <button
+                          v-for="opt in currentQuestion.options"
+                          :key="opt.id"
+                          @click.stop="selectAnswer(opt.id)"
+                          :class="['answer-btn', { selected: selectedChoice === opt.id }]"
+                          v-text="opt.text"
+                        ></button>
+
+                        <button
+                          class="save-answer-btn"
+                          @click.stop="saveAnswer"
+                        >
+                          Сохранить ответ
+                        </button>
+                      </div>
+
+
+                  
+                      <div v-else class="answer-input-wrapper">
+                        <input class="answer-input"
+                          type="text"
+                          v-model="answerInput"
+                          placeholder="Введите ответ"
+                        />
+                        <button @click.stop="saveAnswer" class="save-answer-btn">Сохранить ответ</button>
+                      </div>
+
+
+                </div>
+              </div>
+            </div>
+
+        
+            <div class="boss-character">
+                <img :src="monsterImage" alt="boss">
+            </div>
+         </div>
+     
+     
+     
+         
+     
+         <div class="footer">
+     
+             <div class="health">
+                 <img src="{% static 'img/heart.png' %}" alt="Сердце">
+                 <span v-text="lives"></span>
+             </div>
+     
+             <button class="hint" @click="openHintPopup" v-if="!isBossFight">Подсказка</button>
+     
+             <div class="points">
+                 <img src="{% static 'img/rank.png' %}" alt="Звезда">
+                 <span v-text="rank"></span>
+             </div>
+         </div>
+
+
+
+
+        <div v-if="noTasksLeft" class="hint-popup">
+          <div class="hint-popup-content">
+            <h2>Задачи закончились</h2>
+            <p>Вы прошли все задачи в этой локации.<br>Выберите новую и продолжите бой!</p>
+            <div class="hint-popup-buttons">
+              <button class="btn-back" @click="goToMenu">К выбору локации</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+    </main>
+
+
+
+
+
+        <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+        <script src="{% static 'js/game.js' %}"></script>
+
+
+
+
+</body>
+
+<script>
+  (function() {
+    const page = document.querySelector('body');  
+    
+    function updateZoom() {
+      const w = window.innerWidth;
+  
+      if (w > 1024) {
+        const factor = w / 1920;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+  
+      } else if (w >= 431 && w <= 767) {
+        const factor = w / 430;
+        page.style.zoom            = factor;
+        page.style.transformOrigin = 'top left';
+        
+      } else {
+        page.style.zoom            = '';
+        page.style.transformOrigin = '';
+      }
+    }
+  
+    window.addEventListener('resize', updateZoom);
+    window.addEventListener('DOMContentLoaded', updateZoom);
+  })();
+  
+</script>
+
+
+</html>

@@ -1,0 +1,927 @@
+/* Базовые сбросы и настройки */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Rubik Wet Paint', 'Russo One', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Общие стили для контейнеров */
+.width-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Первый блок: "Карты, деньги, два ряда" */
+.main-content-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: url("imgs/welcome-bg.png") center/cover no-repeat fixed;
+  padding: 200px;
+  position: relative;
+}
+
+
+
+.main-content-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+.card-money-row-button-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 954px;
+  padding: 20px;
+  z-index: 1;
+  gap: 50px;
+}
+
+/* Второй блок: "Лор игры" */
+.medieval-fantasy-game-description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: url("imgs/bg.png") center/cover no-repeat fixed;
+  padding: 0px 20px;
+  padding-top: 20px;
+  position: relative;
+  justify-content: flex-start;
+}
+
+.medieval-fantasy-game-description::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+.medieval-tale-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1800px;
+  margin: 0 auto;
+  z-index: 1;
+  padding-top: 0px;
+}
+
+
+.rubik-wet-paint-heading {
+  font: 400 clamp(40px, 8vw, 100px) 'Rubik Wet Paint';
+  color: rgb(0, 0, 0); /* Изменено на белый для лучшей читаемости */
+  text-align: center;
+  -webkit-text-stroke: 1px black;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.medieval-game-title {
+  font-size: clamp(56px, 18vw, 112px);
+  color: #000;
+  text-align: center;
+  margin-bottom: 25px;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
+}
+
+.medieval-tales-description {
+  font-family: 'Russo One', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 90%;
+  color: rgba(28, 26, 26, 0.9);
+}
+
+
+/* Стили кнопок остаются без изменений */
+.start-button, .medieval-adventure-button {
+  width: min(90%, 281px);
+  height: 74px;
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint';
+  color: #262a29;
+  background: #6e704a;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.start-button:hover, .medieval-adventure-button:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+
+
+/* Стили для третьей страницы (регистрация) */
+.hero-registration-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url("imgs/bg.png") center/cover no-repeat fixed;
+  padding: 20px;
+  position: relative;
+}
+
+.hero-registration-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+.hero-registration-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1023px;
+  padding: 40px 20px;
+}
+
+.hero-title-text-style {
+  font: 400 clamp(40px, 8vw, 100px) 'Rubik Wet Paint';
+  color: rgb(0, 0, 0);
+  text-align: center;
+  -webkit-text-stroke: 1px black;
+  margin-bottom: 50px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-title-text-style1 {
+  font: 400 clamp(24px, 5vw, 36px) 'Russo One', sans-serif;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.registration-form-container {
+  width: 100%;
+  max-width: 612px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.vertical-centered-buttons-container {
+  width: 100%;
+}
+
+
+.form-error {
+  margin-top: 5px;
+  font-size: 16px;
+  color: #ff3333;
+  font-family: 'Russo One', sans-serif;
+  text-align: center;
+}
+
+.switch-auth-text {
+  font: 400 clamp(16px, 2vw, 24px) 'Russo One', sans-serif;
+  color: #222;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.switch-auth-link {
+  color: #a51f1d;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 8px;
+  transition: color 0.3s;
+}
+
+.switch-auth-link:hover {
+  color: #6e0d0b;
+}
+
+
+
+
+.last-name-button,
+.centered-text-container {
+  width: 100%;
+  height: 76px;
+  font: 400 clamp(20px, 3vw, 36px) 'Russo One', sans-serif;
+  color: white;
+  background: rgba(110, 112, 74, 0.3);
+  border: none;
+  border-radius: 50px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.transparent-centered-input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: white;
+  font: inherit;
+  text-align: center;
+  outline: none;
+}
+
+.transparent-centered-input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.continue-button {
+  width: min(90%, 314px);
+  height: 74px;
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint';
+  color: #262a29;
+  background: #6e704a;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  margin: 40px auto 0;
+  display: block;
+}
+
+.continue-button:hover {
+  transform: scale(1.05);}
+
+
+/* Стили для 4-й страницы */
+#page4 {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#page4 .game-instructions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: url("imgs/bg.png") center/cover no-repeat fixed;
+  position: relative;
+}
+
+#page4 .game-instructions-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: rgba(0, 0, 0, 0.5); */
+  z-index: 0;
+}
+
+#page4 .game-title-heading {
+  font: 400 clamp(40px, 8vw, 100px) 'Rubik Wet Paint', sans-serif;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  -webkit-text-stroke: 1px black;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+#page4 .game-rules-text {
+  font-family: 'Russo One', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  max-width: 1400px;
+  line-height: 1.6;
+  margin: 0 auto 40px;
+  position: relative;
+  z-index: 1;
+}
+
+#page4 .start-game-button {
+  width: min(90%, 281px);
+  height: 74px;
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint';
+  color: #262a29;
+  background: #6e704a;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+#page4 .start-game-button:hover {
+  transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+
+/* Стили для страницы выбора монстра */
+
+.page-wrapper {
+  height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  flex-direction: column;
+}
+
+
+.monster-selection-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("imgs/bg.png") center/cover no-repeat;
+  padding: 40px 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.difficulty {
+  font: 400 clamp(64px, 8vw, 100px) 'Rubik Wet Paint';
+  color: #000;
+  -webkit-text-stroke: 1px black;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+}
+
+.text {
+  font: 400 clamp(24px, 5vw, 36px) 'Russo One', sans-serif;
+  color: #000;
+}
+
+.monsters {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  flex-wrap: wrap;
+  margin-top: 80px;
+  margin-bottom: 40px;
+}
+
+.monster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.monster img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #a51f1d;
+  margin-bottom: 15px;
+}
+
+.monster span {
+  font: 400 clamp(18px, 2vw, 28px) 'Rubik Wet Paint';
+  color: #262a29;
+  background: rgba(165, 31, 29, 0.47);
+  padding: 8px 20px;
+  border-radius: 50px;
+}
+
+.monster:hover {
+  transform: scale(1.05);
+}
+
+.monster.boss {
+  margin-top: -80px;
+}
+
+
+.monster.left-monster,
+.monster.right-monster {
+  margin-top: 80px;
+}
+
+
+
+.stats {
+  margin-top: auto;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+
+.stats-monster {
+  margin-top: auto;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 43%;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  background: #a51f1d;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.indicator img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  object-fit: contain;
+}
+
+
+
+
+
+
+
+
+
+
+/* Стили для страницы локации */
+
+.location-header {
+  margin-top: 0px;
+}
+
+.mystical-heading {
+  font: 400 clamp(64px, 8vw, 88px) 'Rubik Wet Paint', sans-serif;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  -webkit-text-stroke: 1px black;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+.main-heading-text-style {
+  font: 400 clamp(28px, 4vw, 36px) "Russo One", sans-serif;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  -webkit-text-stroke: 1px black;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.location-selector-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  background: url("imgs/bg.png") center/cover no-repeat;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.locations-wrapper {
+  position: relative;
+  width: 100%;
+  height: 600px; /* или auto + min-height */
+  margin-top: 40px;
+  z-index: 999;
+}
+
+.loc {
+  position: absolute;
+}
+
+.loc1 {
+  top: -3vw;
+  right: 25vw;
+}
+
+.loc2 {
+  top: -3vw;
+  left: 25vw;
+}
+
+.loc3 {
+  align-items: center;
+  justify-content: center;
+  top: 2vw;
+  right: -4vw;
+}
+
+.loc4 {
+  bottom: 10vw;
+  right: 12vw;
+}
+
+.loc5 {
+  bottom: 10vw;
+  left: 11vw;
+}
+
+
+
+
+.location-option {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  transition: transform 0.3s;
+}
+
+
+
+.location-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #a51f1d;
+  transition: transform 0.3s;
+}
+
+.location-option:hover {
+  transform: scale(1.05);
+}
+
+.location-button {
+  font: 400 24px 'Rubik Wet Paint';
+  color: #262a29;
+  background: rgba(57, 100, 93, 0.31);
+  border: none;
+  border-radius: 50px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  text-align: center;
+}
+
+
+
+
+
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  padding: 0 30px;
+  pointer-events: none;
+}
+
+.nav-left,
+.nav-center,
+.nav-right {
+  pointer-events: all;
+}
+
+
+.nav-left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* .nav-left.logout {
+  padding: 1px !important;
+} */
+
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-right {
+  flex: 1;
+}
+
+.back-button {
+  font: 400 clamp(24px, 3vw, 36px) 'Rubik Wet Paint';
+  color: #262a29;
+  background: rgba(165, 31, 29, 0.47);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1;
+  text-decoration: none;
+  margin-left: 35px;
+}
+
+.back-button:hover {
+  background: rgba(165, 31, 29, 0.7);
+  transform: scale(1.05);
+}
+
+.logout-button {
+  font: 400 clamp(24px, 3vw, 32px) 'Rubik Wet Paint';
+  color: #262a29;
+  background: rgba(165, 31, 29, 0.47);
+  border: none;
+  border-radius: 50px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1;
+  text-decoration: none;
+  margin-left: 35px;
+}
+
+.logout-button:hover {
+  background: rgba(165, 31, 29, 0.7);
+  transform: scale(1.05);
+}
+
+.indicators {
+  display: flex;
+  gap: 20px;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #a51f1d;
+  color: white;
+  /* font-weight: bold; */
+  font-size: 24px;
+  padding: 6px 14px;
+  border-radius: 20px;
+}
+
+.indicator img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+
+
+
+.health-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+  display: flex;
+  align-items: center;
+  background: rgba(165, 31, 29, 0.82);
+  border-radius: 50px;
+  padding: 5px 20px;
+  z-index: 2;
+}
+
+.rank-indicator {
+  position: absolute;
+  bottom: 30px;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  background: rgba(165, 31, 29, 0.82);
+  border-radius: 50px;
+  padding: 5px 20px;
+  z-index: 2;
+}
+
+.health-icon,
+.rank-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.health-count,
+.rank-count {
+  font: 400 36px 'Rubik Wet Paint';
+  color: white;
+  margin-left: 10px;
+}
+/* Плавные переходы для всех страниц */
+.page, #battle-page, #hint-page, #no-health-page {
+  transition: opacity 0.5s ease;
+}
+/* Скрываем индикаторы до регистрации */
+.health-indicator, .rank-indicator {
+  display: none;
+}
+
+/* Показываем только после регистрации */
+.registered .health-indicator,
+.registered .rank-indicator {
+  display: flex;
+}
+
+/* Убираем кнопки назад с первых страниц */
+#page1 .back-button,
+#page2 .back-button,
+#page3 .back-button {
+  display: none !important;
+}
+
+/* Общие стили для страницы с локациями */
+#locationsWrapper {
+  position: relative;
+  min-height: 70vh;
+  padding: 20px;
+  overflow: hidden; /* Убираем скроллинг */
+}
+
+
+/* Скрываем кнопку назад на первом экране */
+#page1 .back-button {
+  display: none;
+}
+
+/* Отключаем скролл для всей страницы */
+/* body, html {
+  overflow: hidden;
+  height: 100%;
+} */
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: 'Rubik Wet Paint', 'Russo One', sans-serif;
+  overflow: hidden;
+}
+.health-indicator, .rank-indicator {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+  background: rgba(165, 31, 29, 0.82);
+  border-radius: 50px;
+  padding: 5px 20px;
+  z-index: 2;
+}
+
+.health-indicator {
+  left: 50px;
+}
+
+.rank-indicator {
+  right: 50px;
+}
+
+.health-icon, .rank-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.health-count, .rank-count {
+  font: 400 36px 'Rubik Wet Paint';
+  color: white;
+  margin-left: 10px;
+}
+
+
+
+
+
+/* ТЕОРИЯ */
+
+
+.theory-selection-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: url("imgs/bg.png") center/cover no-repeat;
+  padding: 40px 20px;
+}
+
+.theory-screen {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.quiz-title {
+  font: 400 clamp(48px, 7vw, 72px) 'Rubik Wet Paint';
+  margin-bottom: 100px;
+  margin-top: 0;
+}
+
+.quiz-question {
+  font: 400 28px 'Russo One';
+  margin-bottom: 150px;
+}
+
+.quiz-answers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "first empty third"
+    ". second .";
+  gap: 20px 20px;
+  justify-items: center;
+  align-items: center;
+  margin-top: 40px;
+  max-width: 1700px;
+  width: 100%;
+}
+
+.quiz-option:nth-child(1) {
+  grid-area: first;
+}
+
+.quiz-option:nth-child(2) {
+  grid-area: second;
+}
+
+.quiz-option:nth-child(3) {
+  grid-area: third;
+}
+
+.quiz-option {
+  font: 400 24px 'Russo One';
+  background: rgba(165, 31, 29, 0.7);
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.quiz-option:hover {
+  background: rgba(165, 31, 29, 1);
+}
+
+
+.quiz-feedback {
+  margin-top: 30px;
+  font: 700 24px 'Russo One';
+  color: #000;
+}
