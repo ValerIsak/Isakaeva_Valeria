@@ -3,9 +3,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import CustomUser
 
+
+# Форма регистрации нового пользователя
 class CustomUserCreationForm(forms.ModelForm):
+    # Поле username с индивидуальными параметрами отображения
     username = forms.CharField(
-        label='',
+        label='', # скрываем стандартную метку
         max_length=150,
         required=True,
         widget=forms.TextInput(attrs={
@@ -15,6 +18,7 @@ class CustomUserCreationForm(forms.ModelForm):
         })
     )
 
+    # Первое поле пароля
     password1 = forms.CharField(
         label='',
         required=True,
@@ -25,6 +29,7 @@ class CustomUserCreationForm(forms.ModelForm):
         })
     )
 
+    # Повторное поле пароля для проверки совпадения
     password2 = forms.CharField(
         label='',
         required=True,
@@ -36,15 +41,17 @@ class CustomUserCreationForm(forms.ModelForm):
     )
 
     class Meta:
-        model = CustomUser
-        fields = ('username',)
+        model = CustomUser # связанная модель
+        fields = ('username',) # заполняем только имя (пароли обрабатываются отдельно)
 
+    # Проверка на уникальность имени пользователя
     def clean_username(self):
         username = self.cleaned_data['username']
         if CustomUser.objects.filter(username=username).exists():
             raise forms.ValidationError("Пользователь с таким ФИ уже существует.")
         return username
 
+    # Проверка совпадения паролей
     def clean(self):
         cleaned = super().clean()
         p1 = cleaned.get('password1')
@@ -52,7 +59,8 @@ class CustomUserCreationForm(forms.ModelForm):
         if p1 and p2 and p1 != p2:
             self.add_error('password2', "Пароли не совпадают.")
         return cleaned
-
+    
+    # Устанавливаем пароль и сохраняем пользователя
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password1'])
@@ -63,7 +71,7 @@ class CustomUserCreationForm(forms.ModelForm):
 
 
 
-
+# Форма авторизации пользователя
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(
         label='',

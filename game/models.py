@@ -1,6 +1,8 @@
 
 from django.db import models
 
+
+# Модель, представляющая игровую локацию
 class Location(models.Model):
     name = models.CharField('Название локации', max_length=255)
     background_image = models.ImageField('Фоновое изображение', upload_to='locations/', blank=True, null=True)
@@ -10,11 +12,13 @@ class Location(models.Model):
         verbose_name = 'Локация'
         verbose_name_plural = 'Локации'
 
+    # Возвращает строковое представление с учётом правильного окончания слова "вопрос"
     def __str__(self):
         return f"{self.name} ({self.question_count} вопрос{'а' if self.question_count==2 else 'ов' if self.question_count>2 else ''})"
 
-
+# Модель задачи, которая решается игроком
 class Task(models.Model):
+    # Варианты сложности
     DIFFICULTY_CHOICES = [
         ('easy',   'Лёгкий'),
         ('medium', 'Средний'),
@@ -33,22 +37,21 @@ class Task(models.Model):
     class Meta:
         verbose_name = 'Задача'
         verbose_name_plural = 'Задачи'
-        ordering = ['location', 'difficulty']
+        ordering = ['location', 'difficulty'] # Сортировка задач по локации и сложности
 
     def __str__(self):
+        # Строковое представление задачи
         return f"{self.location.name}: {self.text[:50]}"
 
+    # Возвращает первые N вопросов, где N = question_count локации.
     def get_questions(self):
-        """
-        Возвращает первые N вопросов, где N = question_count локации.
-        """
         return (self.questions.all().order_by('order')[:self.location.question_count])
 
-
+# Модель вопроса, связанного с задачей
 class Question(models.Model):
     QUESTION_TYPE_CHOICES = [
-        ('choice', 'Выбор варианта'),
-        ('input',  'Свободный ввод'),
+        ('choice', 'Выбор варианта'), # Вопрос с выбором ответа
+        ('input',  'Свободный ввод'), # Вопрос со свободным вводом
     ]
 
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='questions', verbose_name='Задача')
@@ -66,6 +69,7 @@ class Question(models.Model):
         return f"{self.task}: вопрос {self.order}"
 
 
+# Модель вариантов ответа для вопроса типа "choice"
 class ChoiceOption(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='options', verbose_name='Вопрос')
     text = models.CharField('Текст варианта', max_length=255)
@@ -78,7 +82,7 @@ class ChoiceOption(models.Model):
     def __str__(self):
         return self.text
 
-
+# Модель теоретического вопроса, показываемого между локациями
 class TheoryQuestion(models.Model):
     question = models.TextField('Текст теоретического вопроса')
     answer1 = models.CharField('Вариант 1', max_length=255, blank=True, null=True)
@@ -96,4 +100,4 @@ class TheoryQuestion(models.Model):
         verbose_name_plural = 'Теоретические вопросы'
 
     def __str__(self):
-        return self.question[:50]
+        return self.question[:50] # Показываем первые 50 символов вопроса

@@ -6,7 +6,7 @@ class ChoiceOptionInlineFormSet(BaseInlineFormSet):
         super().clean()
 
         if not hasattr(self.instance, 'question_type'):
-            return  # ещё не выбран тип вопроса
+            return
 
         if self.instance.question_type == 'choice':
             count = 0
