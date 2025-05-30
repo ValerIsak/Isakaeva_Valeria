@@ -920,6 +920,7 @@ html, body {
     text-align: center;
     font-family: 'Rubik Wet Paint', sans-serif;
     gap: 50px;
+    background: url("imgs/bg-boss.jpg") center/cover no-repeat;
 }
   
 .boss-title {
@@ -1064,6 +1065,7 @@ html, body {
 .quiz-question {
   font: 400 28px 'Russo One';
   margin-bottom: 150px;
+  text-align: center;
 }
 
 .quiz-answers {
@@ -1115,6 +1117,7 @@ html, body {
   margin-top: 30px;
   font: 700 24px 'Russo One';
   color: #000;
+  text-align: center;
 }
 
 
